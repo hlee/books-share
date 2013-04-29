@@ -3,6 +3,8 @@ BooksShare::Application.routes.draw do
 
   resources :books
 
+  #resources :tags
+
   root :to => 'home#index'
 
   get "home/index"
@@ -11,6 +13,9 @@ BooksShare::Application.routes.draw do
   get 'tags/:tag', to: 'books#index', as: :tag
   get 'authors/:author', to: 'books#index', as: :author
   get 'translators/:translator', to: 'books#index', as: :translator
+
+  get 'tags/:id/edit', :controller => "tags", :action => 'edit'
+  put 'tags/:id', :controller => "tags", :action => 'update'
 
   match "/search" => "search#index", :as => :search
 
